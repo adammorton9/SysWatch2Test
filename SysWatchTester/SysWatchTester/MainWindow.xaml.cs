@@ -31,7 +31,12 @@ namespace SysWatchTester
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Server.Start();
 
+            while (Server.IsRunning())
+            {
+                Server.HandleRequests();
+            }
         }
     }
 }
