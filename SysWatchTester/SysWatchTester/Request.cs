@@ -2,9 +2,19 @@
 
 namespace SysWatchTester
 {
-    class Request
+    public enum Environment
     {
-        public int WaitTime { get; set; }
-        public List<string> Parameters { get; set; } = new List<string>();
+        Dev, 
+        QA,
+        Test,
+        UAT,
+        Prod
+    }
+
+    public class Request
+    {
+        public Environment Environment { get; }
+        public string Url { get; }
+        public string QueryString { get; }
     }
 }

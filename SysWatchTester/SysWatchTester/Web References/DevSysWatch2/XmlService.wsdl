@@ -1,0 +1,3587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://syswatch2.nextace.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://syswatch2.nextace.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://syswatch2.nextace.com/">
+      <s:element name="TestLogger">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestLoggerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestLoggerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAllTasks">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListAllTasksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAllTasksResult" type="tns:ArrayOfTaskDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTaskDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskDefinition" nillable="true" type="tns:TaskDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Target" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxTimeSecs" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AlterTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="monitoringSetKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxTimeSeconds" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="target" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlterTaskResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTaskResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateInstanceControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="label" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxNumberInstances" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInstanceControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateInstanceControlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteInstanceControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="label" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteInstanceControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteInstanceControlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInstanceControlList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInstanceControlListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInstanceControlListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Notify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NotifyResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStatsByPropertyServerAndDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="propertyId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serverId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatsByPropertyServerAndDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatsByPropertyServerAndDateRangeResult" type="tns:ArrayOfJobStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfJobStat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobStat" nillable="true" type="tns:JobStat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobStat">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="JobId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="JobStatId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateStarted" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateFinished" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PropertyId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Server" type="tns:Server" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="HostName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Min" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Max" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Median" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mod" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Variance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sum" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SampleSize" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShouldInsertIntoDb" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Server">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="HostName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DomainName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyCapacities" type="tns:ArrayOfServerPropertyCapacity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfServerPropertyCapacity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServerPropertyCapacity" nillable="true" type="tns:ServerPropertyCapacity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServerPropertyCapacity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerPropertyCapacityId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="PropertyId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Server" type="tns:Server" />
+          <s:element minOccurs="1" maxOccurs="1" name="Capacity" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SubmitJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitJobResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithDelay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="runAfterDelaySeconds" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithDelayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitJobWithDelayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithCombine">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithCombineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitJobWithCombineResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithCombineAndDelay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="runAfterDelaySeconds" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithCombineAndDelayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitJobWithCombineAndDelayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOutputPath">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputFilePath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOutputPathResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitJobWithOutputPathResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOutputPathAndDelay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputFilePath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="runAfterDelaySeconds" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOutputPathAndDelayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitJobWithOutputPathAndDelayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="X">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="x" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="XResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTaskListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskListResult" type="tns:ArrayOfTaskDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatuses">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStatusesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatusesResult" type="tns:ArrayOfJobStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfJobStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobStatus" nillable="true" type="tns:JobStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OcrCompletedCallBack">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="jobId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OcrCompletedCallBackResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OcrCompletedCallBackResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CombineCompletedCallBack">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="jobId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CombineCompletedCallBackResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CombineCompletedCallBackResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOcr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ocrTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceOrderId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputFilePath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ocrEnvironmentId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="deleteImageSource" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOcrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SubmitJobWithOcrResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOcrAndDelay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ocrTypeId" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceOrderId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outputFilePath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ocrEnvironmentId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="deleteImageSource" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="runAfterDelaySeconds" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitJobWithOcrAndDelayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SubmitJobWithOcrAndDelayResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SissyWatchStats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="method" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="start" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="end" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SissyWatchStatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SissyWatchStatsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllInstanceControls">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllInstanceControlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllInstanceControlsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="statusIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceTypeId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobSimpleData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentJobId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="statusIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instanceControlLabel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="taskIds" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceTypeId" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobSimpleDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobSimpleDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnfinishedJobs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="referringTaskUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="taskIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="statusIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceTypeId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnfinishedJobsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnfinishedJobsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobDebugById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="jobId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobDebugByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobDebugByIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProcessingBoxCpuUsage">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProcessingBoxCpuUsageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProcessingBoxCpuUsageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IssueKillCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IssueKillCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IssueKillCommandResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resultData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestMethodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestMethodResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobIdFromHostname">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobIdFromHostnameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetJobIdFromHostnameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobIdFromHostnameDebug">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobIdFromHostnameDebugResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetJobIdFromHostnameDebugResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeTaskServerType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="serverTypeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeTaskServerTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeTaskServerTypeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeServerTypeId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostname" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="serverTypeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeServerTypeIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeServerTypeIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeServerAnyId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostname" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="anyId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeServerAnyIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeServerAnyIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddServerToServerTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddServerToServerTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddServerToServerTableResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRejectOrderTaskException">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderTypeId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="county" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRejectOrderTaskExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRejectOrderTaskExceptionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobsThatContainValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceOrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="valueToSearch" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobsThatContainValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobsThatContainValueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfTaskDefinition" nillable="true" type="tns:ArrayOfTaskDefinition" />
+      <s:element name="ArrayOfJobStat" nillable="true" type="tns:ArrayOfJobStat" />
+      <s:element name="ArrayOfJobStatus" nillable="true" type="tns:ArrayOfJobStatus" />
+      <s:element name="int" type="s:int" />
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TestLoggerSoapIn">
+    <wsdl:part name="parameters" element="tns:TestLogger" />
+  </wsdl:message>
+  <wsdl:message name="TestLoggerSoapOut">
+    <wsdl:part name="parameters" element="tns:TestLoggerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAllTasksSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAllTasks" />
+  </wsdl:message>
+  <wsdl:message name="ListAllTasksSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAllTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlterTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:AlterTask" />
+  </wsdl:message>
+  <wsdl:message name="AlterTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:AlterTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTask" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInstanceControlSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateInstanceControl" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInstanceControlSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateInstanceControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstanceControlSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteInstanceControl" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstanceControlSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteInstanceControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInstanceControlListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInstanceControlList" />
+  </wsdl:message>
+  <wsdl:message name="GetInstanceControlListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInstanceControlListResponse" />
+  </wsdl:message>
+  <wsdl:message name="NotifySoapIn">
+    <wsdl:part name="parameters" element="tns:Notify" />
+  </wsdl:message>
+  <wsdl:message name="NotifySoapOut">
+    <wsdl:part name="parameters" element="tns:NotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsByPropertyServerAndDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatsByPropertyServerAndDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsByPropertyServerAndDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatsByPropertyServerAndDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJob" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithDelaySoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithDelay" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithDelaySoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithDelayResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithCombine" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithCombineResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineAndDelaySoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithCombineAndDelay" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineAndDelaySoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithCombineAndDelayResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOutputPath" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOutputPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathAndDelaySoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOutputPathAndDelay" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathAndDelaySoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOutputPathAndDelayResponse" />
+  </wsdl:message>
+  <wsdl:message name="XSoapIn">
+    <wsdl:part name="parameters" element="tns:X" />
+  </wsdl:message>
+  <wsdl:message name="XSoapOut">
+    <wsdl:part name="parameters" element="tns:XResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskList" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatuses" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="OcrCompletedCallBackSoapIn">
+    <wsdl:part name="parameters" element="tns:OcrCompletedCallBack" />
+  </wsdl:message>
+  <wsdl:message name="OcrCompletedCallBackSoapOut">
+    <wsdl:part name="parameters" element="tns:OcrCompletedCallBackResponse" />
+  </wsdl:message>
+  <wsdl:message name="CombineCompletedCallBackSoapIn">
+    <wsdl:part name="parameters" element="tns:CombineCompletedCallBack" />
+  </wsdl:message>
+  <wsdl:message name="CombineCompletedCallBackSoapOut">
+    <wsdl:part name="parameters" element="tns:CombineCompletedCallBackResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOcr" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOcrResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrAndDelaySoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOcrAndDelay" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrAndDelaySoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitJobWithOcrAndDelayResponse" />
+  </wsdl:message>
+  <wsdl:message name="SissyWatchStatsSoapIn">
+    <wsdl:part name="parameters" element="tns:SissyWatchStats" />
+  </wsdl:message>
+  <wsdl:message name="SissyWatchStatsSoapOut">
+    <wsdl:part name="parameters" element="tns:SissyWatchStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInstanceControlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllInstanceControls" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInstanceControlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllInstanceControlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobData" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSimpleDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobSimpleData" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSimpleDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobSimpleDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnfinishedJobsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnfinishedJobs" />
+  </wsdl:message>
+  <wsdl:message name="GetUnfinishedJobsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnfinishedJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDebugByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobDebugById" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDebugByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobDebugByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessingBoxCpuUsageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProcessingBoxCpuUsage" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessingBoxCpuUsageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProcessingBoxCpuUsageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IssueKillCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:IssueKillCommand" />
+  </wsdl:message>
+  <wsdl:message name="IssueKillCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:IssueKillCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:TestMethod" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:TestMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobIdFromHostname" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobIdFromHostnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameDebugSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobIdFromHostnameDebug" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameDebugSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobIdFromHostnameDebugResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskServerTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeTaskServerType" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskServerTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeTaskServerTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerTypeIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeServerTypeId" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerTypeIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeServerTypeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerAnyIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeServerAnyId" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerAnyIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeServerAnyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddServerToServerTableSoapIn">
+    <wsdl:part name="parameters" element="tns:AddServerToServerTable" />
+  </wsdl:message>
+  <wsdl:message name="AddServerToServerTableSoapOut">
+    <wsdl:part name="parameters" element="tns:AddServerToServerTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRejectOrderTaskExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRejectOrderTaskException" />
+  </wsdl:message>
+  <wsdl:message name="AddRejectOrderTaskExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRejectOrderTaskExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsThatContainValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobsThatContainValue" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsThatContainValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobsThatContainValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestLoggerHttpGetIn" />
+  <wsdl:message name="TestLoggerHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAllTasksHttpGetIn" />
+  <wsdl:message name="ListAllTasksHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTaskDefinition" />
+  </wsdl:message>
+  <wsdl:message name="AlterTaskHttpGetIn">
+    <wsdl:part name="taskId" type="s:string" />
+    <wsdl:part name="taskTypeId" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="monitoringSetKey" type="s:string" />
+    <wsdl:part name="maxTimeSeconds" type="s:string" />
+    <wsdl:part name="target" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AlterTaskHttpGetOut" />
+  <wsdl:message name="DeleteTaskHttpGetIn">
+    <wsdl:part name="taskId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskHttpGetOut" />
+  <wsdl:message name="UpdateInstanceControlHttpGetIn">
+    <wsdl:part name="label" type="s:string" />
+    <wsdl:part name="maxNumberInstances" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInstanceControlHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstanceControlHttpGetIn">
+    <wsdl:part name="label" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstanceControlHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInstanceControlListHttpGetIn" />
+  <wsdl:message name="GetInstanceControlListHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NotifyHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NotifyHttpGetOut" />
+  <wsdl:message name="GetStatsByPropertyServerAndDateRangeHttpGetIn">
+    <wsdl:part name="propertyId" type="s:string" />
+    <wsdl:part name="serverId" type="s:string" />
+    <wsdl:part name="startDate" type="s:string" />
+    <wsdl:part name="endDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsByPropertyServerAndDateRangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfJobStat" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithDelayHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithDelayHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineAndDelayHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineAndDelayHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathAndDelayHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathAndDelayHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="XHttpGetIn">
+    <wsdl:part name="x" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="XHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskListHttpGetIn" />
+  <wsdl:message name="GetTaskListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTaskDefinition" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusesHttpGetIn" />
+  <wsdl:message name="GetStatusesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfJobStatus" />
+  </wsdl:message>
+  <wsdl:message name="OcrCompletedCallBackHttpGetIn">
+    <wsdl:part name="jobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OcrCompletedCallBackHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CombineCompletedCallBackHttpGetIn">
+    <wsdl:part name="jobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CombineCompletedCallBackHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrHttpGetIn">
+    <wsdl:part name="priority" type="s:string" />
+    <wsdl:part name="ocrTypeId" type="s:string" />
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="filename" type="s:string" />
+    <wsdl:part name="ocrEnvironmentId" type="s:string" />
+    <wsdl:part name="deleteImageSource" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrAndDelayHttpGetIn">
+    <wsdl:part name="priority" type="s:string" />
+    <wsdl:part name="ocrTypeId" type="s:string" />
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="filename" type="s:string" />
+    <wsdl:part name="ocrEnvironmentId" type="s:string" />
+    <wsdl:part name="deleteImageSource" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrAndDelayHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="SissyWatchStatsHttpGetIn">
+    <wsdl:part name="method" type="s:string" />
+    <wsdl:part name="start" type="s:string" />
+    <wsdl:part name="end" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SissyWatchStatsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInstanceControlsHttpGetIn" />
+  <wsdl:message name="GetAllInstanceControlsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDataHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="statusIds" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSimpleDataHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="statusIds" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="taskIds" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSimpleDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnfinishedJobsHttpGetIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="taskIds" type="s:string" />
+    <wsdl:part name="statusIds" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnfinishedJobsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDebugByIdHttpGetIn">
+    <wsdl:part name="jobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDebugByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessingBoxCpuUsageHttpGetIn" />
+  <wsdl:message name="GetProcessingBoxCpuUsageHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IssueKillCommandHttpGetIn">
+    <wsdl:part name="sourceOrderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IssueKillCommandHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodHttpGetIn">
+    <wsdl:part name="resultData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameHttpGetIn">
+    <wsdl:part name="hostname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameDebugHttpGetIn">
+    <wsdl:part name="hostname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameDebugHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskServerTypeHttpGetIn">
+    <wsdl:part name="taskId" type="s:string" />
+    <wsdl:part name="serverTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskServerTypeHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerTypeIdHttpGetIn">
+    <wsdl:part name="hostname" type="s:string" />
+    <wsdl:part name="serverTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerTypeIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerAnyIdHttpGetIn">
+    <wsdl:part name="hostname" type="s:string" />
+    <wsdl:part name="anyId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerAnyIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddServerToServerTableHttpGetIn">
+    <wsdl:part name="hostname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddServerToServerTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddRejectOrderTaskExceptionHttpGetIn">
+    <wsdl:part name="taskId" type="s:string" />
+    <wsdl:part name="orderTypeId" type="s:string" />
+    <wsdl:part name="companyId" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="county" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddRejectOrderTaskExceptionHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsThatContainValueHttpGetIn">
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="valueToSearch" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsThatContainValueHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestLoggerHttpPostIn" />
+  <wsdl:message name="TestLoggerHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListAllTasksHttpPostIn" />
+  <wsdl:message name="ListAllTasksHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTaskDefinition" />
+  </wsdl:message>
+  <wsdl:message name="AlterTaskHttpPostIn">
+    <wsdl:part name="taskId" type="s:string" />
+    <wsdl:part name="taskTypeId" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="monitoringSetKey" type="s:string" />
+    <wsdl:part name="maxTimeSeconds" type="s:string" />
+    <wsdl:part name="target" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AlterTaskHttpPostOut" />
+  <wsdl:message name="DeleteTaskHttpPostIn">
+    <wsdl:part name="taskId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskHttpPostOut" />
+  <wsdl:message name="UpdateInstanceControlHttpPostIn">
+    <wsdl:part name="label" type="s:string" />
+    <wsdl:part name="maxNumberInstances" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInstanceControlHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstanceControlHttpPostIn">
+    <wsdl:part name="label" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInstanceControlHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInstanceControlListHttpPostIn" />
+  <wsdl:message name="GetInstanceControlListHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NotifyHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NotifyHttpPostOut" />
+  <wsdl:message name="GetStatsByPropertyServerAndDateRangeHttpPostIn">
+    <wsdl:part name="propertyId" type="s:string" />
+    <wsdl:part name="serverId" type="s:string" />
+    <wsdl:part name="startDate" type="s:string" />
+    <wsdl:part name="endDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsByPropertyServerAndDateRangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfJobStat" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithDelayHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithDelayHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineAndDelayHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithCombineAndDelayHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathAndDelayHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOutputPathAndDelayHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="XHttpPostIn">
+    <wsdl:part name="x" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="XHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskListHttpPostIn" />
+  <wsdl:message name="GetTaskListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTaskDefinition" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusesHttpPostIn" />
+  <wsdl:message name="GetStatusesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfJobStatus" />
+  </wsdl:message>
+  <wsdl:message name="OcrCompletedCallBackHttpPostIn">
+    <wsdl:part name="jobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OcrCompletedCallBackHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CombineCompletedCallBackHttpPostIn">
+    <wsdl:part name="jobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CombineCompletedCallBackHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrHttpPostIn">
+    <wsdl:part name="priority" type="s:string" />
+    <wsdl:part name="ocrTypeId" type="s:string" />
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="filename" type="s:string" />
+    <wsdl:part name="ocrEnvironmentId" type="s:string" />
+    <wsdl:part name="deleteImageSource" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrAndDelayHttpPostIn">
+    <wsdl:part name="priority" type="s:string" />
+    <wsdl:part name="ocrTypeId" type="s:string" />
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="queryString" type="s:string" />
+    <wsdl:part name="outputFilePath" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="filename" type="s:string" />
+    <wsdl:part name="ocrEnvironmentId" type="s:string" />
+    <wsdl:part name="deleteImageSource" type="s:string" />
+    <wsdl:part name="runAfterDelaySeconds" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitJobWithOcrAndDelayHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="SissyWatchStatsHttpPostIn">
+    <wsdl:part name="method" type="s:string" />
+    <wsdl:part name="start" type="s:string" />
+    <wsdl:part name="end" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SissyWatchStatsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInstanceControlsHttpPostIn" />
+  <wsdl:message name="GetAllInstanceControlsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDataHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="statusIds" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSimpleDataHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="parentJobId" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="statusIds" type="s:string" />
+    <wsdl:part name="instanceControlLabel" type="s:string" />
+    <wsdl:part name="taskIds" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSimpleDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnfinishedJobsHttpPostIn">
+    <wsdl:part name="sourceId" type="s:string" />
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="url" type="s:string" />
+    <wsdl:part name="referringTaskUrl" type="s:string" />
+    <wsdl:part name="taskIds" type="s:string" />
+    <wsdl:part name="statusIds" type="s:string" />
+    <wsdl:part name="sourceTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnfinishedJobsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDebugByIdHttpPostIn">
+    <wsdl:part name="jobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobDebugByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessingBoxCpuUsageHttpPostIn" />
+  <wsdl:message name="GetProcessingBoxCpuUsageHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IssueKillCommandHttpPostIn">
+    <wsdl:part name="sourceOrderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IssueKillCommandHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodHttpPostIn">
+    <wsdl:part name="resultData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameHttpPostIn">
+    <wsdl:part name="hostname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameDebugHttpPostIn">
+    <wsdl:part name="hostname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFromHostnameDebugHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskServerTypeHttpPostIn">
+    <wsdl:part name="taskId" type="s:string" />
+    <wsdl:part name="serverTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskServerTypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerTypeIdHttpPostIn">
+    <wsdl:part name="hostname" type="s:string" />
+    <wsdl:part name="serverTypeId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerTypeIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerAnyIdHttpPostIn">
+    <wsdl:part name="hostname" type="s:string" />
+    <wsdl:part name="anyId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeServerAnyIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddServerToServerTableHttpPostIn">
+    <wsdl:part name="hostname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddServerToServerTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="AddRejectOrderTaskExceptionHttpPostIn">
+    <wsdl:part name="taskId" type="s:string" />
+    <wsdl:part name="orderTypeId" type="s:string" />
+    <wsdl:part name="companyId" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="county" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddRejectOrderTaskExceptionHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsThatContainValueHttpPostIn">
+    <wsdl:part name="sourceOrderId" type="s:string" />
+    <wsdl:part name="valueToSearch" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJobsThatContainValueHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="XmlServiceSoap">
+    <wsdl:operation name="TestLogger">
+      <wsdl:input message="tns:TestLoggerSoapIn" />
+      <wsdl:output message="tns:TestLoggerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">List all Tasks from database</wsdl:documentation>
+      <wsdl:input message="tns:ListAllTasksSoapIn" />
+      <wsdl:output message="tns:ListAllTasksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a task by given parameters (Task Types 1=Standard HTTP, 4=Bypass CF Dupe control</wsdl:documentation>
+      <wsdl:input message="tns:AlterTaskSoapIn" />
+      <wsdl:output message="tns:AlterTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a task in the database given its TaskID</wsdl:documentation>
+      <wsdl:input message="tns:DeleteTaskSoapIn" />
+      <wsdl:output message="tns:DeleteTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits an Instance Control Record by Label - If Instance exists it will have its max number updated - Returns 0, 1, or 2 for error, added or changed.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateInstanceControlSoapIn" />
+      <wsdl:output message="tns:UpdateInstanceControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes an Instance Control Record by Label</wsdl:documentation>
+      <wsdl:input message="tns:DeleteInstanceControlSoapIn" />
+      <wsdl:output message="tns:DeleteInstanceControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a List of all Instance Control Objects from Database</wsdl:documentation>
+      <wsdl:input message="tns:GetInstanceControlListSoapIn" />
+      <wsdl:output message="tns:GetInstanceControlListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Notify</wsdl:documentation>
+      <wsdl:input message="tns:NotifySoapIn" />
+      <wsdl:output message="tns:NotifySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Job Stats by multiple paramters</wsdl:documentation>
+      <wsdl:input message="tns:GetStatsByPropertyServerAndDateRangeSoapIn" />
+      <wsdl:output message="tns:GetStatsByPropertyServerAndDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobSoapIn" />
+      <wsdl:output message="tns:SubmitJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job with Delay to be processed by a SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithDelaySoapIn" />
+      <wsdl:output message="tns:SubmitJobWithDelaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server after combine has completed</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithCombineSoapIn" />
+      <wsdl:output message="tns:SubmitJobWithCombineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job with Delay to be processed by a SysWatch2 Server after combine has completed</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithCombineAndDelaySoapIn" />
+      <wsdl:output message="tns:SubmitJobWithCombineAndDelaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server - this overload accepts a filesystem path to be used to log http response.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOutputPathSoapIn" />
+      <wsdl:output message="tns:SubmitJobWithOutputPathSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server - this overload accepts a filesystem path to be used to log http response.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOutputPathAndDelaySoapIn" />
+      <wsdl:output message="tns:SubmitJobWithOutputPathAndDelaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hack method created under request that takes an Xml request as string and uses its parameter order to call other methods</wsdl:documentation>
+      <wsdl:input message="tns:XSoapIn" />
+      <wsdl:output message="tns:XSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the list of all Tasks from database</wsdl:documentation>
+      <wsdl:input message="tns:GetTaskListSoapIn" />
+      <wsdl:output message="tns:GetTaskListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of valid statuses</wsdl:documentation>
+      <wsdl:input message="tns:GetStatusesSoapIn" />
+      <wsdl:output message="tns:GetStatusesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Callback method for OCR Services - Used instead of polling</wsdl:documentation>
+      <wsdl:input message="tns:OcrCompletedCallBackSoapIn" />
+      <wsdl:output message="tns:OcrCompletedCallBackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Callback method for Combine Services - Used instead of polling</wsdl:documentation>
+      <wsdl:input message="tns:CombineCompletedCallBackSoapIn" />
+      <wsdl:output message="tns:CombineCompletedCallBackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits Document Images to OCR - This version of this method will bundle a pdx data (xml instructions) which will be available as the next SwII task is ready to run</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOcrSoapIn" />
+      <wsdl:output message="tns:SubmitJobWithOcrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits Document Images to OCR - This version of this method will bundle a pdx data (xml instructions) which will be available as the next SwII task is ready to run</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOcrAndDelaySoapIn" />
+      <wsdl:output message="tns:SubmitJobWithOcrAndDelaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a SysWatch2 task report.</wsdl:documentation>
+      <wsdl:input message="tns:SissyWatchStatsSoapIn" />
+      <wsdl:output message="tns:SissyWatchStatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <wsdl:input message="tns:GetAllInstanceControlsSoapIn" />
+      <wsdl:output message="tns:GetAllInstanceControlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves Job data based on input parameters - All parameters are optional. StatusId can be CSV (Comma separated Values)</wsdl:documentation>
+      <wsdl:input message="tns:GetJobDataSoapIn" />
+      <wsdl:output message="tns:GetJobDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of JobIds and current StatusId for the jobs that match the selection criteria. All parameters are optiona - StatusId can be CSV</wsdl:documentation>
+      <wsdl:input message="tns:GetJobSimpleDataSoapIn" />
+      <wsdl:output message="tns:GetJobSimpleDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all unfinished jobs pending in SysWatch</wsdl:documentation>
+      <wsdl:input message="tns:GetUnfinishedJobsSoapIn" />
+      <wsdl:output message="tns:GetUnfinishedJobsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <wsdl:input message="tns:GetJobDebugByIdSoapIn" />
+      <wsdl:output message="tns:GetJobDebugByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an Xml tracking daily CPU usage</wsdl:documentation>
+      <wsdl:input message="tns:GetProcessingBoxCpuUsageSoapIn" />
+      <wsdl:output message="tns:GetProcessingBoxCpuUsageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Kills any running SysWatch2 order based on SourceOrderID</wsdl:documentation>
+      <wsdl:input message="tns:IssueKillCommandSoapIn" />
+      <wsdl:output message="tns:IssueKillCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <wsdl:input message="tns:TestMethodSoapIn" />
+      <wsdl:output message="tns:TestMethodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reserves a job and grabs the JobID of the job to be Processed by the designated SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:GetJobIdFromHostnameSoapIn" />
+      <wsdl:output message="tns:GetJobIdFromHostnameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reserves a job and grabs the JobID of the job to be Processed by the designated SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:GetJobIdFromHostnameDebugSoapIn" />
+      <wsdl:output message="tns:GetJobIdFromHostnameDebugSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a given taskID to a new serverTypeID</wsdl:documentation>
+      <wsdl:input message="tns:ChangeTaskServerTypeSoapIn" />
+      <wsdl:output message="tns:ChangeTaskServerTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a server's serverTypeID (what the server identifies as</wsdl:documentation>
+      <wsdl:input message="tns:ChangeServerTypeIdSoapIn" />
+      <wsdl:output message="tns:ChangeServerTypeIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a server's anyID to a new one (or same one)</wsdl:documentation>
+      <wsdl:input message="tns:ChangeServerAnyIdSoapIn" />
+      <wsdl:output message="tns:ChangeServerAnyIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to add a machine to the server table</wsdl:documentation>
+      <wsdl:input message="tns:AddServerToServerTableSoapIn" />
+      <wsdl:output message="tns:AddServerToServerTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to add a machine to the server table</wsdl:documentation>
+      <wsdl:input message="tns:AddRejectOrderTaskExceptionSoapIn" />
+      <wsdl:output message="tns:AddRejectOrderTaskExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Will return a list of JobId's containing a value that has been found within job debug.</wsdl:documentation>
+      <wsdl:input message="tns:GetJobsThatContainValueSoapIn" />
+      <wsdl:output message="tns:GetJobsThatContainValueSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="XmlServiceHttpGet">
+    <wsdl:operation name="TestLogger">
+      <wsdl:input message="tns:TestLoggerHttpGetIn" />
+      <wsdl:output message="tns:TestLoggerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">List all Tasks from database</wsdl:documentation>
+      <wsdl:input message="tns:ListAllTasksHttpGetIn" />
+      <wsdl:output message="tns:ListAllTasksHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a task by given parameters (Task Types 1=Standard HTTP, 4=Bypass CF Dupe control</wsdl:documentation>
+      <wsdl:input message="tns:AlterTaskHttpGetIn" />
+      <wsdl:output message="tns:AlterTaskHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a task in the database given its TaskID</wsdl:documentation>
+      <wsdl:input message="tns:DeleteTaskHttpGetIn" />
+      <wsdl:output message="tns:DeleteTaskHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits an Instance Control Record by Label - If Instance exists it will have its max number updated - Returns 0, 1, or 2 for error, added or changed.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateInstanceControlHttpGetIn" />
+      <wsdl:output message="tns:UpdateInstanceControlHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes an Instance Control Record by Label</wsdl:documentation>
+      <wsdl:input message="tns:DeleteInstanceControlHttpGetIn" />
+      <wsdl:output message="tns:DeleteInstanceControlHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a List of all Instance Control Objects from Database</wsdl:documentation>
+      <wsdl:input message="tns:GetInstanceControlListHttpGetIn" />
+      <wsdl:output message="tns:GetInstanceControlListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Notify</wsdl:documentation>
+      <wsdl:input message="tns:NotifyHttpGetIn" />
+      <wsdl:output message="tns:NotifyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Job Stats by multiple paramters</wsdl:documentation>
+      <wsdl:input message="tns:GetStatsByPropertyServerAndDateRangeHttpGetIn" />
+      <wsdl:output message="tns:GetStatsByPropertyServerAndDateRangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job with Delay to be processed by a SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithDelayHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithDelayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server after combine has completed</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithCombineHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithCombineHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job with Delay to be processed by a SysWatch2 Server after combine has completed</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithCombineAndDelayHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithCombineAndDelayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server - this overload accepts a filesystem path to be used to log http response.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOutputPathHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithOutputPathHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server - this overload accepts a filesystem path to be used to log http response.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOutputPathAndDelayHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithOutputPathAndDelayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hack method created under request that takes an Xml request as string and uses its parameter order to call other methods</wsdl:documentation>
+      <wsdl:input message="tns:XHttpGetIn" />
+      <wsdl:output message="tns:XHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the list of all Tasks from database</wsdl:documentation>
+      <wsdl:input message="tns:GetTaskListHttpGetIn" />
+      <wsdl:output message="tns:GetTaskListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of valid statuses</wsdl:documentation>
+      <wsdl:input message="tns:GetStatusesHttpGetIn" />
+      <wsdl:output message="tns:GetStatusesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Callback method for OCR Services - Used instead of polling</wsdl:documentation>
+      <wsdl:input message="tns:OcrCompletedCallBackHttpGetIn" />
+      <wsdl:output message="tns:OcrCompletedCallBackHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Callback method for Combine Services - Used instead of polling</wsdl:documentation>
+      <wsdl:input message="tns:CombineCompletedCallBackHttpGetIn" />
+      <wsdl:output message="tns:CombineCompletedCallBackHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits Document Images to OCR - This version of this method will bundle a pdx data (xml instructions) which will be available as the next SwII task is ready to run</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOcrHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithOcrHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits Document Images to OCR - This version of this method will bundle a pdx data (xml instructions) which will be available as the next SwII task is ready to run</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOcrAndDelayHttpGetIn" />
+      <wsdl:output message="tns:SubmitJobWithOcrAndDelayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a SysWatch2 task report.</wsdl:documentation>
+      <wsdl:input message="tns:SissyWatchStatsHttpGetIn" />
+      <wsdl:output message="tns:SissyWatchStatsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <wsdl:input message="tns:GetAllInstanceControlsHttpGetIn" />
+      <wsdl:output message="tns:GetAllInstanceControlsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves Job data based on input parameters - All parameters are optional. StatusId can be CSV (Comma separated Values)</wsdl:documentation>
+      <wsdl:input message="tns:GetJobDataHttpGetIn" />
+      <wsdl:output message="tns:GetJobDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of JobIds and current StatusId for the jobs that match the selection criteria. All parameters are optiona - StatusId can be CSV</wsdl:documentation>
+      <wsdl:input message="tns:GetJobSimpleDataHttpGetIn" />
+      <wsdl:output message="tns:GetJobSimpleDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all unfinished jobs pending in SysWatch</wsdl:documentation>
+      <wsdl:input message="tns:GetUnfinishedJobsHttpGetIn" />
+      <wsdl:output message="tns:GetUnfinishedJobsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <wsdl:input message="tns:GetJobDebugByIdHttpGetIn" />
+      <wsdl:output message="tns:GetJobDebugByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an Xml tracking daily CPU usage</wsdl:documentation>
+      <wsdl:input message="tns:GetProcessingBoxCpuUsageHttpGetIn" />
+      <wsdl:output message="tns:GetProcessingBoxCpuUsageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Kills any running SysWatch2 order based on SourceOrderID</wsdl:documentation>
+      <wsdl:input message="tns:IssueKillCommandHttpGetIn" />
+      <wsdl:output message="tns:IssueKillCommandHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <wsdl:input message="tns:TestMethodHttpGetIn" />
+      <wsdl:output message="tns:TestMethodHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reserves a job and grabs the JobID of the job to be Processed by the designated SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:GetJobIdFromHostnameHttpGetIn" />
+      <wsdl:output message="tns:GetJobIdFromHostnameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reserves a job and grabs the JobID of the job to be Processed by the designated SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:GetJobIdFromHostnameDebugHttpGetIn" />
+      <wsdl:output message="tns:GetJobIdFromHostnameDebugHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a given taskID to a new serverTypeID</wsdl:documentation>
+      <wsdl:input message="tns:ChangeTaskServerTypeHttpGetIn" />
+      <wsdl:output message="tns:ChangeTaskServerTypeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a server's serverTypeID (what the server identifies as</wsdl:documentation>
+      <wsdl:input message="tns:ChangeServerTypeIdHttpGetIn" />
+      <wsdl:output message="tns:ChangeServerTypeIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a server's anyID to a new one (or same one)</wsdl:documentation>
+      <wsdl:input message="tns:ChangeServerAnyIdHttpGetIn" />
+      <wsdl:output message="tns:ChangeServerAnyIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to add a machine to the server table</wsdl:documentation>
+      <wsdl:input message="tns:AddServerToServerTableHttpGetIn" />
+      <wsdl:output message="tns:AddServerToServerTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to add a machine to the server table</wsdl:documentation>
+      <wsdl:input message="tns:AddRejectOrderTaskExceptionHttpGetIn" />
+      <wsdl:output message="tns:AddRejectOrderTaskExceptionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Will return a list of JobId's containing a value that has been found within job debug.</wsdl:documentation>
+      <wsdl:input message="tns:GetJobsThatContainValueHttpGetIn" />
+      <wsdl:output message="tns:GetJobsThatContainValueHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="XmlServiceHttpPost">
+    <wsdl:operation name="TestLogger">
+      <wsdl:input message="tns:TestLoggerHttpPostIn" />
+      <wsdl:output message="tns:TestLoggerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">List all Tasks from database</wsdl:documentation>
+      <wsdl:input message="tns:ListAllTasksHttpPostIn" />
+      <wsdl:output message="tns:ListAllTasksHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a task by given parameters (Task Types 1=Standard HTTP, 4=Bypass CF Dupe control</wsdl:documentation>
+      <wsdl:input message="tns:AlterTaskHttpPostIn" />
+      <wsdl:output message="tns:AlterTaskHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a task in the database given its TaskID</wsdl:documentation>
+      <wsdl:input message="tns:DeleteTaskHttpPostIn" />
+      <wsdl:output message="tns:DeleteTaskHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits an Instance Control Record by Label - If Instance exists it will have its max number updated - Returns 0, 1, or 2 for error, added or changed.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateInstanceControlHttpPostIn" />
+      <wsdl:output message="tns:UpdateInstanceControlHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes an Instance Control Record by Label</wsdl:documentation>
+      <wsdl:input message="tns:DeleteInstanceControlHttpPostIn" />
+      <wsdl:output message="tns:DeleteInstanceControlHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a List of all Instance Control Objects from Database</wsdl:documentation>
+      <wsdl:input message="tns:GetInstanceControlListHttpPostIn" />
+      <wsdl:output message="tns:GetInstanceControlListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Notify</wsdl:documentation>
+      <wsdl:input message="tns:NotifyHttpPostIn" />
+      <wsdl:output message="tns:NotifyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Job Stats by multiple paramters</wsdl:documentation>
+      <wsdl:input message="tns:GetStatsByPropertyServerAndDateRangeHttpPostIn" />
+      <wsdl:output message="tns:GetStatsByPropertyServerAndDateRangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job with Delay to be processed by a SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithDelayHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithDelayHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server after combine has completed</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithCombineHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithCombineHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job with Delay to be processed by a SysWatch2 Server after combine has completed</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithCombineAndDelayHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithCombineAndDelayHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server - this overload accepts a filesystem path to be used to log http response.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOutputPathHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithOutputPathHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits a new Job to be processed by a SysWatch2 Server - this overload accepts a filesystem path to be used to log http response.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOutputPathAndDelayHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithOutputPathAndDelayHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hack method created under request that takes an Xml request as string and uses its parameter order to call other methods</wsdl:documentation>
+      <wsdl:input message="tns:XHttpPostIn" />
+      <wsdl:output message="tns:XHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the list of all Tasks from database</wsdl:documentation>
+      <wsdl:input message="tns:GetTaskListHttpPostIn" />
+      <wsdl:output message="tns:GetTaskListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of valid statuses</wsdl:documentation>
+      <wsdl:input message="tns:GetStatusesHttpPostIn" />
+      <wsdl:output message="tns:GetStatusesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Callback method for OCR Services - Used instead of polling</wsdl:documentation>
+      <wsdl:input message="tns:OcrCompletedCallBackHttpPostIn" />
+      <wsdl:output message="tns:OcrCompletedCallBackHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Callback method for Combine Services - Used instead of polling</wsdl:documentation>
+      <wsdl:input message="tns:CombineCompletedCallBackHttpPostIn" />
+      <wsdl:output message="tns:CombineCompletedCallBackHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits Document Images to OCR - This version of this method will bundle a pdx data (xml instructions) which will be available as the next SwII task is ready to run</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOcrHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithOcrHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits Document Images to OCR - This version of this method will bundle a pdx data (xml instructions) which will be available as the next SwII task is ready to run</wsdl:documentation>
+      <wsdl:input message="tns:SubmitJobWithOcrAndDelayHttpPostIn" />
+      <wsdl:output message="tns:SubmitJobWithOcrAndDelayHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a SysWatch2 task report.</wsdl:documentation>
+      <wsdl:input message="tns:SissyWatchStatsHttpPostIn" />
+      <wsdl:output message="tns:SissyWatchStatsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <wsdl:input message="tns:GetAllInstanceControlsHttpPostIn" />
+      <wsdl:output message="tns:GetAllInstanceControlsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves Job data based on input parameters - All parameters are optional. StatusId can be CSV (Comma separated Values)</wsdl:documentation>
+      <wsdl:input message="tns:GetJobDataHttpPostIn" />
+      <wsdl:output message="tns:GetJobDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of JobIds and current StatusId for the jobs that match the selection criteria. All parameters are optiona - StatusId can be CSV</wsdl:documentation>
+      <wsdl:input message="tns:GetJobSimpleDataHttpPostIn" />
+      <wsdl:output message="tns:GetJobSimpleDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all unfinished jobs pending in SysWatch</wsdl:documentation>
+      <wsdl:input message="tns:GetUnfinishedJobsHttpPostIn" />
+      <wsdl:output message="tns:GetUnfinishedJobsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <wsdl:input message="tns:GetJobDebugByIdHttpPostIn" />
+      <wsdl:output message="tns:GetJobDebugByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an Xml tracking daily CPU usage</wsdl:documentation>
+      <wsdl:input message="tns:GetProcessingBoxCpuUsageHttpPostIn" />
+      <wsdl:output message="tns:GetProcessingBoxCpuUsageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Kills any running SysWatch2 order based on SourceOrderID</wsdl:documentation>
+      <wsdl:input message="tns:IssueKillCommandHttpPostIn" />
+      <wsdl:output message="tns:IssueKillCommandHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <wsdl:input message="tns:TestMethodHttpPostIn" />
+      <wsdl:output message="tns:TestMethodHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reserves a job and grabs the JobID of the job to be Processed by the designated SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:GetJobIdFromHostnameHttpPostIn" />
+      <wsdl:output message="tns:GetJobIdFromHostnameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reserves a job and grabs the JobID of the job to be Processed by the designated SysWatch2 Server</wsdl:documentation>
+      <wsdl:input message="tns:GetJobIdFromHostnameDebugHttpPostIn" />
+      <wsdl:output message="tns:GetJobIdFromHostnameDebugHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a given taskID to a new serverTypeID</wsdl:documentation>
+      <wsdl:input message="tns:ChangeTaskServerTypeHttpPostIn" />
+      <wsdl:output message="tns:ChangeTaskServerTypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a server's serverTypeID (what the server identifies as</wsdl:documentation>
+      <wsdl:input message="tns:ChangeServerTypeIdHttpPostIn" />
+      <wsdl:output message="tns:ChangeServerTypeIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to change a server's anyID to a new one (or same one)</wsdl:documentation>
+      <wsdl:input message="tns:ChangeServerAnyIdHttpPostIn" />
+      <wsdl:output message="tns:ChangeServerAnyIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to add a machine to the server table</wsdl:documentation>
+      <wsdl:input message="tns:AddServerToServerTableHttpPostIn" />
+      <wsdl:output message="tns:AddServerToServerTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Attempts to add a machine to the server table</wsdl:documentation>
+      <wsdl:input message="tns:AddRejectOrderTaskExceptionHttpPostIn" />
+      <wsdl:output message="tns:AddRejectOrderTaskExceptionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Will return a list of JobId's containing a value that has been found within job debug.</wsdl:documentation>
+      <wsdl:input message="tns:GetJobsThatContainValueHttpPostIn" />
+      <wsdl:output message="tns:GetJobsThatContainValueHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="XmlServiceSoap" type="tns:XmlServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestLogger">
+      <soap:operation soapAction="http://syswatch2.nextace.com/TestLogger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <soap:operation soapAction="http://syswatch2.nextace.com/ListAllTasks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <soap:operation soapAction="http://syswatch2.nextace.com/AlterTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://syswatch2.nextace.com/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <soap:operation soapAction="http://syswatch2.nextace.com/UpdateInstanceControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <soap:operation soapAction="http://syswatch2.nextace.com/DeleteInstanceControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetInstanceControlList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <soap:operation soapAction="http://syswatch2.nextace.com/Notify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetStatsByPropertyServerAndDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithDelay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithCombine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithCombineAndDelay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOutputPath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOutputPathAndDelay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <soap:operation soapAction="http://syswatch2.nextace.com/X" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetStatuses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <soap:operation soapAction="http://syswatch2.nextace.com/OcrCompletedCallBack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <soap:operation soapAction="http://syswatch2.nextace.com/CombineCompletedCallBack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOcr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOcrAndDelay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <soap:operation soapAction="http://syswatch2.nextace.com/SissyWatchStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetAllInstanceControls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetJobData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetJobSimpleData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetUnfinishedJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetJobDebugById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetProcessingBoxCpuUsage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <soap:operation soapAction="http://syswatch2.nextace.com/IssueKillCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <soap:operation soapAction="http://syswatch2.nextace.com/TestMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetJobIdFromHostname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetJobIdFromHostnameDebug" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <soap:operation soapAction="http://syswatch2.nextace.com/ChangeTaskServerType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <soap:operation soapAction="http://syswatch2.nextace.com/ChangeServerTypeId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <soap:operation soapAction="http://syswatch2.nextace.com/ChangeServerAnyId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <soap:operation soapAction="http://syswatch2.nextace.com/AddServerToServerTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <soap:operation soapAction="http://syswatch2.nextace.com/AddRejectOrderTaskException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <soap:operation soapAction="http://syswatch2.nextace.com/GetJobsThatContainValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="XmlServiceSoap12" type="tns:XmlServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestLogger">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/TestLogger" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/ListAllTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/AlterTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/UpdateInstanceControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/DeleteInstanceControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetInstanceControlList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/Notify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetStatsByPropertyServerAndDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithDelay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithCombine" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithCombineAndDelay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOutputPath" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOutputPathAndDelay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/X" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetStatuses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/OcrCompletedCallBack" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/CombineCompletedCallBack" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOcr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SubmitJobWithOcrAndDelay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/SissyWatchStats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetAllInstanceControls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetJobData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetJobSimpleData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetUnfinishedJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetJobDebugById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetProcessingBoxCpuUsage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/IssueKillCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/TestMethod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetJobIdFromHostname" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetJobIdFromHostnameDebug" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/ChangeTaskServerType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/ChangeServerTypeId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/ChangeServerAnyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/AddServerToServerTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/AddRejectOrderTaskException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <soap12:operation soapAction="http://syswatch2.nextace.com/GetJobsThatContainValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="XmlServiceHttpGet" type="tns:XmlServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="TestLogger">
+      <http:operation location="/TestLogger" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <http:operation location="/ListAllTasks" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <http:operation location="/AlterTask" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <http:operation location="/DeleteTask" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <http:operation location="/UpdateInstanceControl" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <http:operation location="/DeleteInstanceControl" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <http:operation location="/GetInstanceControlList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <http:operation location="/Notify" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <http:operation location="/GetStatsByPropertyServerAndDateRange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <http:operation location="/SubmitJob" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <http:operation location="/SubmitJobWithDelay" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <http:operation location="/SubmitJobWithCombine" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <http:operation location="/SubmitJobWithCombineAndDelay" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <http:operation location="/SubmitJobWithOutputPath" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <http:operation location="/SubmitJobWithOutputPathAndDelay" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <http:operation location="/X" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <http:operation location="/GetTaskList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <http:operation location="/GetStatuses" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <http:operation location="/OcrCompletedCallBack" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <http:operation location="/CombineCompletedCallBack" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <http:operation location="/SubmitJobWithOcr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <http:operation location="/SubmitJobWithOcrAndDelay" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <http:operation location="/SissyWatchStats" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <http:operation location="/GetAllInstanceControls" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <http:operation location="/GetJobData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <http:operation location="/GetJobSimpleData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <http:operation location="/GetUnfinishedJobs" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <http:operation location="/GetJobDebugById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <http:operation location="/GetProcessingBoxCpuUsage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <http:operation location="/IssueKillCommand" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <http:operation location="/TestMethod" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <http:operation location="/GetJobIdFromHostname" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <http:operation location="/GetJobIdFromHostnameDebug" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <http:operation location="/ChangeTaskServerType" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <http:operation location="/ChangeServerTypeId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <http:operation location="/ChangeServerAnyId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <http:operation location="/AddServerToServerTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <http:operation location="/AddRejectOrderTaskException" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <http:operation location="/GetJobsThatContainValue" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="XmlServiceHttpPost" type="tns:XmlServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="TestLogger">
+      <http:operation location="/TestLogger" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllTasks">
+      <http:operation location="/ListAllTasks" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterTask">
+      <http:operation location="/AlterTask" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <http:operation location="/DeleteTask" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInstanceControl">
+      <http:operation location="/UpdateInstanceControl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInstanceControl">
+      <http:operation location="/DeleteInstanceControl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstanceControlList">
+      <http:operation location="/GetInstanceControlList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Notify">
+      <http:operation location="/Notify" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatsByPropertyServerAndDateRange">
+      <http:operation location="/GetStatsByPropertyServerAndDateRange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJob">
+      <http:operation location="/SubmitJob" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithDelay">
+      <http:operation location="/SubmitJobWithDelay" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombine">
+      <http:operation location="/SubmitJobWithCombine" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithCombineAndDelay">
+      <http:operation location="/SubmitJobWithCombineAndDelay" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPath">
+      <http:operation location="/SubmitJobWithOutputPath" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOutputPathAndDelay">
+      <http:operation location="/SubmitJobWithOutputPathAndDelay" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="X">
+      <http:operation location="/X" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <http:operation location="/GetTaskList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatuses">
+      <http:operation location="/GetStatuses" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OcrCompletedCallBack">
+      <http:operation location="/OcrCompletedCallBack" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CombineCompletedCallBack">
+      <http:operation location="/CombineCompletedCallBack" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcr">
+      <http:operation location="/SubmitJobWithOcr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitJobWithOcrAndDelay">
+      <http:operation location="/SubmitJobWithOcrAndDelay" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SissyWatchStats">
+      <http:operation location="/SissyWatchStats" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstanceControls">
+      <http:operation location="/GetAllInstanceControls" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobData">
+      <http:operation location="/GetJobData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSimpleData">
+      <http:operation location="/GetJobSimpleData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnfinishedJobs">
+      <http:operation location="/GetUnfinishedJobs" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobDebugById">
+      <http:operation location="/GetJobDebugById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingBoxCpuUsage">
+      <http:operation location="/GetProcessingBoxCpuUsage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueKillCommand">
+      <http:operation location="/IssueKillCommand" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMethod">
+      <http:operation location="/TestMethod" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostname">
+      <http:operation location="/GetJobIdFromHostname" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobIdFromHostnameDebug">
+      <http:operation location="/GetJobIdFromHostnameDebug" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskServerType">
+      <http:operation location="/ChangeTaskServerType" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerTypeId">
+      <http:operation location="/ChangeServerTypeId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeServerAnyId">
+      <http:operation location="/ChangeServerAnyId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddServerToServerTable">
+      <http:operation location="/AddServerToServerTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRejectOrderTaskException">
+      <http:operation location="/AddRejectOrderTaskException" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsThatContainValue">
+      <http:operation location="/GetJobsThatContainValue" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="XmlService">
+    <wsdl:port name="XmlServiceSoap" binding="tns:XmlServiceSoap">
+      <soap:address location="https://devsyswatch.titleedge.com/XmlService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="XmlServiceSoap12" binding="tns:XmlServiceSoap12">
+      <soap12:address location="https://devsyswatch.titleedge.com/XmlService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="XmlServiceHttpGet" binding="tns:XmlServiceHttpGet">
+      <http:address location="https://devsyswatch.titleedge.com/XmlService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="XmlServiceHttpPost" binding="tns:XmlServiceHttpPost">
+      <http:address location="https://devsyswatch.titleedge.com/XmlService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

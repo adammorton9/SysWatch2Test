@@ -8,22 +8,68 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SysWatchTester.Properties
-{
-
-
+namespace SysWatchTester.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://devsyswatch.titleedge.com/XmlService.asmx")]
+        public string SysWatchTester_DevSysWatch2_XmlService {
+            get {
+                return ((string)(this["SysWatchTester_DevSysWatch2_XmlService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://qasyswatch.titleedge.com/XmlService.asmx")]
+        public string SysWatchTester_QASysWatch2_XmlService {
+            get {
+                return ((string)(this["SysWatchTester_QASysWatch2_XmlService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://testsyswatch.titleedge.com/XmlService.asmx")]
+        public string SysWatchTester_TestSysWatch2_XmlService {
+            get {
+                return ((string)(this["SysWatchTester_TestSysWatch2_XmlService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://uatsyswatch.titleedge.com/XmlService.asmx")]
+        public string SysWatchTester_UATSysWatch2_XmlService {
+            get {
+                return ((string)(this["SysWatchTester_UATSysWatch2_XmlService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://syswatch.titleedge.com/XmlService.asmx")]
+        public string SysWatchTester_ProdSysWatch2_XmlService {
+            get {
+                return ((string)(this["SysWatchTester_ProdSysWatch2_XmlService"]));
             }
         }
     }

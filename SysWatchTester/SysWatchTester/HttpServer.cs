@@ -91,7 +91,7 @@ namespace SysWatchTester
                     return;
 
                 Console.WriteLine("{0} {1}", context.Request.HttpMethod, context.Request.RawUrl);
-                GUI.Dispatcher.Invoke(GUI.responseDelegate, $"{context.Request.HttpMethod} {context.Request.RawUrl}");
+                GUI.Dispatcher.Invoke(GUI.ResponseDelegate, $"{context.Request.HttpMethod} {context.Request.RawUrl}");
                 context.Response.SendChunked = true;
                 HttpListenerRequest request = context.Request;
 

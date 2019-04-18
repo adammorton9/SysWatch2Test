@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SysWatchTester.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SysWatchTester_DevSysWatch2_XmlService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://devsyswatch.titleedge.com/XmlService.asmx</Value>
+    </Setting>
+    <Setting Name="SysWatchTester_QASysWatch2_XmlService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://qasyswatch.titleedge.com/XmlService.asmx</Value>
+    </Setting>
+    <Setting Name="SysWatchTester_TestSysWatch2_XmlService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://testsyswatch.titleedge.com/XmlService.asmx</Value>
+    </Setting>
+    <Setting Name="SysWatchTester_UATSysWatch2_XmlService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://uatsyswatch.titleedge.com/XmlService.asmx</Value>
+    </Setting>
+    <Setting Name="SysWatchTester_ProdSysWatch2_XmlService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://syswatch.titleedge.com/XmlService.asmx</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

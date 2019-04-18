@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,15 +22,18 @@ namespace SysWatchTester
     {
         private HttpServer Server { get; set; }
         public delegate void AddRequest(string myString);
-        public AddRequest requestDelegate;
+        public AddRequest RequestDelegate;
         public delegate void AddResponse(string myString);
-        public AddResponse responseDelegate;
+        public AddResponse ResponseDelegate;
+        private readonly string[] _environments = {"Dev", "QA", "Test", "UAT", "Prod"}; 
 
         public MainWindow()
         {
-            requestDelegate = AddRequestToListBox;
-            responseDelegate = AddResponseToListBox;
             InitializeComponent();
+            EnvComboBox.ItemsSource = _environments;
+            EnvComboBox.SelectedIndex = 0;
+            RequestDelegate = AddRequestToListBox;
+            ResponseDelegate = AddResponseToListBox;
             PortTextBox.Text = HttpServer.GetRandomUnusedPort().ToString();
         }
         
@@ -59,7 +65,7 @@ namespace SysWatchTester
             {
                 Server = new HttpServer(portNo, this);
                 StatusLabel.Content = $"Listener running.";
-                UrlLabel.Content = $"{Server.Url.Replace("*", "127.0.0.1")}";
+                UrlLabel.Content = $"{Server.Url.Replace("*", GetLocalIPAddress())}";
                 Server.Start();
             }
             else
@@ -117,6 +123,19 @@ namespace SysWatchTester
         private void AddResponseToListBox(string text)
         {
             ResponseListView.Items.Add(text);
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
     }
 }
