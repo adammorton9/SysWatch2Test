@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using static System.Int32;
 
@@ -17,12 +18,19 @@ namespace SysWatchTester
     public partial class MainWindow : Window
     {
         private HttpServer Server { get; set; }
+        public delegate void AddRequest(string myString);
+        public AddRequest requestDelegate;
+        public delegate void AddResponse(string myString);
+        public AddResponse responseDelegate;
+
         public MainWindow()
         {
+            requestDelegate = AddRequestToListBox;
+            responseDelegate = AddResponseToListBox;
             InitializeComponent();
             PortTextBox.Text = HttpServer.GetRandomUnusedPort().ToString();
         }
-
+        
         #region Button Click Events
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -49,7 +57,7 @@ namespace SysWatchTester
             }
             if (Server == null || !Server.IsRunning)
             {
-                Server = new HttpServer(portNo);
+                Server = new HttpServer(portNo, this);
                 StatusLabel.Content = $"Listener running.";
                 UrlLabel.Content = $"{Server.Url.Replace("*", "127.0.0.1")}";
                 Server.Start();
@@ -80,8 +88,7 @@ namespace SysWatchTester
         }
 
         #endregion
-
-
+        
         private void ValidatePortIsAvailable()
         {
             if (TryParse(PortTextBox.Text, out var portNo))
@@ -100,6 +107,16 @@ namespace SysWatchTester
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        public void AddRequestToListBox(string text)
+        {
+            RequestListView.Items.Add(text);
+        }
+
+        private void AddResponseToListBox(string text)
+        {
+            ResponseListView.Items.Add(text);
         }
     }
 }

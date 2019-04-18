@@ -22,8 +22,25 @@
             </Grid>
         </GroupBox>
         <Label Content="SysWatch2 Load Tester" FontSize="20pt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="350" Margin="350,60,0,0" VerticalAlignment="Top" Width="432"/>
+        <GroupBox Header="Response Log" HorizontalAlignment="Left" Height="165" Margin="350,245,0,0" VerticalAlignment="Top" Width="432">
+            <ListView Name="ResponseListView" Margin="10,10,-2,8">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
         <GroupBox Header="Job Runner" HorizontalAlignment="Left" Height="220" Margin="10,190,0,0" VerticalAlignment="Top" Width="335"/>
+        <GroupBox Header="Request Log" HorizontalAlignment="Left" Height="175" Margin="350,65,0,0" VerticalAlignment="Top" Width="432">
+            <ListView x:Name="RequestListView" Margin="10,10,-2,8">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
 
     </Grid>
 </Window>

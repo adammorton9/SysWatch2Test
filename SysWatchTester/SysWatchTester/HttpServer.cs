@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using Newtonsoft.Json;
 
@@ -17,6 +18,7 @@ namespace SysWatchTester
         private readonly int _maxThreads = Environment.ProcessorCount;
         private const string Host = "http://*";
         private const string Endpoint = "test";
+        private readonly MainWindow GUI;
 
         private int Port { get; }
         public string Url { get; }
@@ -24,8 +26,9 @@ namespace SysWatchTester
         private Thread ListenerThread { get; set; }
         public bool IsRunning { get; set; }
 
-        public HttpServer(int port)
+        public HttpServer(int port, MainWindow window)
         {
+            GUI = window;
             Port = port;
             Url = $"{Host}:{Port}/{Endpoint}/";
             HttpListener = new HttpListener();
@@ -88,6 +91,7 @@ namespace SysWatchTester
                     return;
 
                 Console.WriteLine("{0} {1}", context.Request.HttpMethod, context.Request.RawUrl);
+                GUI.Dispatcher.Invoke(GUI.responseDelegate, $"{context.Request.HttpMethod} {context.Request.RawUrl}");
                 context.Response.SendChunked = true;
                 HttpListenerRequest request = context.Request;
 
