@@ -15,11 +15,11 @@ namespace SysWatchTester
 {
     public class HttpServer : IDisposable, INotifyPropertyChanged
     {
+        private const string Host = "http://*";
+        private const string Endpoint = "test";
         private readonly ManualResetEvent _stop, _idle;
         private readonly Semaphore _busy;
         private readonly int _maxThreads = System.Environment.ProcessorCount;
-        private const string Host = "http://*";
-        private const string Endpoint = "test";
         private readonly MainWindow GUI;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -145,6 +145,7 @@ namespace SysWatchTester
         {
             using (HttpListenerResponse response = context.Response)
             {
+                response.StatusCode = (int) HttpStatusCode.OK;
                 byte[] buffer = Encoding.UTF8.GetBytes(responseString);
                 response.ContentLength64 = buffer.Length;
                 using (var output = response.OutputStream)

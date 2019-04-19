@@ -1,0 +1,30 @@
+﻿<Window x:Class="SysWatchTester.JobsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SysWatchTester"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:StyleAlias="clr-namespace:SysWatchTester"
+        mc:Ignorable="d"
+        Title="JobsWindow" Height="300" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <ListView Name="JobsListView" HorizontalAlignment="Left" Height="250" Margin="10,10,0,0" VerticalAlignment="Top" Width="272">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Job No." Width="70px" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Response Status Code" Width="150px">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <ComboBox Name="cbSchemeList" ItemsSource="{Binding Path=StatusCodes}" SelectedValue="{Binding Path=StatusCode}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
