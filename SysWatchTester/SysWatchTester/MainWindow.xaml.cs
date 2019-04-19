@@ -38,6 +38,8 @@ namespace SysWatchTester
             ResponseDelegate = AddResponseToListBox;
             RequestCountDelegate = UpdateRequestsRemainingLabel;
             PortTextBox.Text = HttpServer.GetRandomUnusedPort().ToString();
+            Server = new HttpServer();
+            SubmitJobsBtn.DataContext = Server;
         }
         
         #region Button Click Events
@@ -67,8 +69,9 @@ namespace SysWatchTester
             if (Server == null || !Server.IsRunning)
             {
                 Server = new HttpServer(portNo, this);
+                SubmitJobsBtn.DataContext = Server;
                 StatusLabel.Content = $"Listener running.";
-                UrlLabel.Content = $"{Server.Url.Replace("*", GetLocalIPAddress())}";
+                UrlLabel.Text = $"{Server.Url.Replace("*", GetLocalIPAddress())}";
                 RequestListView.Items.Clear();
                 ResponseListView.Items.Clear();
                 Server.Start();
@@ -88,7 +91,7 @@ namespace SysWatchTester
             else
             {
                 StatusLabel.Content = "Listener stopped.";
-                UrlLabel.Content = string.Empty;
+                UrlLabel.Text = string.Empty;
                 Server.Dispose();
             }
         }
@@ -98,8 +101,35 @@ namespace SysWatchTester
             ValidatePortIsAvailable();
         }
 
+        private void Submit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (!TryParse(NumJobsTextBox.Text, out int numJobs))
+            {
+                MessageBox.Show("Number of jobs must be an integer.");
+                return;
+            }
+
+            TryParse(JobDurationTextBox.Text, out int jobDuration);
+            var initialJobLaunchCount = ConcurrentJobsSlider.Value;
+            var environment = (Environment)Enum.Parse(typeof(Environment), EnvComboBox.SelectedValue.ToString());
+            var request = new Request(environment, Server.Url.Replace("*", GetLocalIPAddress()), $"env={environment}&waitTime={jobDuration}");
+            WebServiceClient.AddRequests(numJobs);
+
+            for (var i = 0; i < initialJobLaunchCount; i++)
+            {
+                UpdateRequestsRemainingLabel(WebServiceClient.RemainingRequests);
+
+                if (WebServiceClient.CanSendRequest())
+                {
+                    WebServiceClient.DecrementRequestCount();
+                    AddRequestToListBox($"{environment} - {Server.Url.Replace("*", GetLocalIPAddress())}");
+                    WebServiceClient.SendRequest(request);
+                }
+            }
+        }
+
         #endregion
-        
+
         private void ValidatePortIsAvailable()
         {
             if (TryParse(PortTextBox.Text, out var portNo))
@@ -148,25 +178,6 @@ namespace SysWatchTester
         private void UpdateRequestsRemainingLabel(int requestsRemaining)
         {
             RemainingRequestsLabel.Content = requestsRemaining;
-        }
-
-        private void Submit_Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!TryParse(NumJobsTextBox.Text, out int numJobs))
-            {
-                MessageBox.Show("Number of jobs must be an integer.");
-                return;
-            }
-            var environment = (Environment)Enum.Parse(typeof(Environment), EnvComboBox.SelectedValue.ToString());
-            var request = new Request(environment, Server.Url.Replace("*", GetLocalIPAddress()), $"env={environment}");
-            WebServiceClient.AddRequests(numJobs);
-            UpdateRequestsRemainingLabel(WebServiceClient.RemainingRequests);
-            if (WebServiceClient.CanSendRequest())
-            {
-                WebServiceClient.DecrementRequestCount();
-                AddRequestToListBox($"{environment} - {Server.Url.Replace("*", GetLocalIPAddress())}");
-                WebServiceClient.SendRequest(request);
-            }
         }
     }
 }

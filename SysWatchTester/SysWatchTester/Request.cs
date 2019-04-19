@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SysWatchTester
 {
@@ -23,5 +24,6 @@ namespace SysWatchTester
             Url = url;
             QueryString = queryString;
         }
+
     }
 }

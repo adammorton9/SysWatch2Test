@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Controls;
@@ -11,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace SysWatchTester
 {
-    public class HttpServer : IDisposable
+    public class HttpServer : IDisposable, INotifyPropertyChanged
     {
         private readonly ManualResetEvent _stop, _idle;
         private readonly Semaphore _busy;
@@ -19,12 +21,29 @@ namespace SysWatchTester
         private const string Host = "http://*";
         private const string Endpoint = "test";
         private readonly MainWindow GUI;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private int Port { get; }
         public string Url { get; }
         private HttpListener HttpListener { get; }
         private Thread ListenerThread { get; set; }
-        public bool IsRunning { get; set; }
+        private bool _isRunning;
+
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set
+            {
+                _isRunning = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public HttpServer()
+        {
+            IsRunning = false;
+        }
+
 
         public HttpServer(int port, MainWindow window)
         {
@@ -96,13 +115,19 @@ namespace SysWatchTester
                 HttpListenerRequest httpRequest = context.Request;
 
                 var environmentParam = httpRequest.QueryString["env"];
-                var environment = (Environment)Enum.Parse(typeof(Environment), environmentParam);
-
+                var environment = environmentParam != null
+                    ? (Environment) Enum.Parse(typeof(Environment), environmentParam)
+                    : Environment.Dev;
+                var jobDuration = httpRequest.QueryString["waitTime"];
+                if (jobDuration != null && int.TryParse(jobDuration, out int sleepTime))
+                {
+                    Thread.Sleep(sleepTime);
+                }
                 SendResponse(context, "test");
                 if (WebServiceClient.CanSendRequest())
                 {
                     WebServiceClient.DecrementRequestCount();
-                    var request = new Request(environment, Url.Replace("*", MainWindow.GetLocalIPAddress()), $"env={environment}");
+                    var request = new Request(environment, Url.Replace("*", MainWindow.GetLocalIPAddress()), $"env={environment}&waitTime={jobDuration}");
                     GUI.Dispatcher.Invoke(GUI.RequestDelegate, $"{environment} - {Url.Replace("*", MainWindow.GetLocalIPAddress())}");
                     WebServiceClient.SendRequest(request);
                 }
@@ -162,6 +187,11 @@ namespace SysWatchTester
             }
 
             return isAvailable;
+        }
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
