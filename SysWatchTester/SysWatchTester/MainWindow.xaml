@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SysWatchTester"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="459" Width="800">
     <Grid>
-        <TextBox Name="PortTextBox" HorizontalAlignment="Left" Height="24" Margin="575,10,0,386" TextWrapping="Wrap" VerticalAlignment="Center" Width="70" PreviewTextInput="NumberValidationTextBox"/>
-        <Button Content="Check Availability" HorizontalAlignment="Left" Margin="666,10,0,0" VerticalAlignment="Top" Width="116" Click="PortAvail_Button_Click"/>
-        <Label Content="Port Number (49152 - 65535):" HorizontalAlignment="Left" Margin="402,6,0,0" VerticalAlignment="Top"/>
-        <Label Name="PortAvailLabel" Content="" HorizontalAlignment="Left" Margin="531,34,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="HTTP Listener" HorizontalAlignment="Left" Height="130" Margin="10,60,0,0" VerticalAlignment="Top" Width="335">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="79*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="PortTextBox" HorizontalAlignment="Left" Height="24" Margin="252,12,0,393" TextWrapping="Wrap" VerticalAlignment="Center" Width="75" PreviewTextInput="NumberValidationTextBox" RenderTransformOrigin="-0.014,0.625" Grid.Column="1"/>
+        <Button Content="Check Availability" HorizontalAlignment="Left" Margin="332,13,0,0" VerticalAlignment="Top" Width="116" Click="PortAvail_Button_Click" Grid.Column="1"/>
+        <Label Content="Port Number (49152 - 65535):" HorizontalAlignment="Left" Margin="84,9,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Name="PortAvailLabel" Content="" HorizontalAlignment="Left" Margin="213,34,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <GroupBox Header="HTTP Listener" HorizontalAlignment="Left" Height="130" Margin="10,68,0,0" VerticalAlignment="Top" Width="335" Grid.ColumnSpan="2">
             <Grid Margin="0,10,-2,9">
                 <Button Content="Stop" HorizontalAlignment="Left" Margin="152,63,0,0" VerticalAlignment="Top" Width="75" Click="Stop_Button_Click"/>
                 <Button Content="Start" HorizontalAlignment="Left" Margin="72,63,0,0" VerticalAlignment="Top" Width="75" Click="Start_Button_Click"/>
@@ -22,18 +26,37 @@
             </Grid>
         </GroupBox>
         <Label Content="SysWatch2 Load Tester" FontSize="20pt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="Response Log" HorizontalAlignment="Left" Height="165" Margin="350,245,0,0" VerticalAlignment="Top" Width="432">
-            <ListView Name="ResponseListView" Margin="10,10,-2,8"/>
+        <GroupBox Header="Response Log" HorizontalAlignment="Left" Height="165" Margin="32,253,0,0" VerticalAlignment="Top" Width="432" Grid.Column="1">
+            <ListView Name="ResponseListView" Margin="4,10,4,8"> 
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No." Width="50px" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Response" DisplayMemberBinding="{Binding Response}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </GroupBox>
-        <GroupBox Header="Job Runner" HorizontalAlignment="Left" Height="220" Margin="10,190,0,0" VerticalAlignment="Top" Width="335">
+        <GroupBox Header="Job Runner" HorizontalAlignment="Left" Height="220" Margin="10,198,0,0" VerticalAlignment="Top" Width="335" Grid.ColumnSpan="2">
             <Grid HorizontalAlignment="Left" Height="200" Margin="0,10,-2,-12" VerticalAlignment="Top" Width="325">
-                <Label Content="Environment:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="84" Height="29"/>
-                <ComboBox Name="EnvComboBox" HorizontalAlignment="Left" Margin="94,11,0,0" VerticalAlignment="Top" Width="63" Height="27"/>
+                <Label Content="Environment:" HorizontalAlignment="Left" Margin="32,11,0,0" VerticalAlignment="Top" Width="79" Height="29"/>
+                <ComboBox Name="EnvComboBox" HorizontalAlignment="Left" Margin="116,11,0,0" VerticalAlignment="Top" Width="63" Height="27"/>
+                <Button Content="Submit Jobs" HorizontalAlignment="Left" Margin="190,144,0,0" VerticalAlignment="Top" Width="125" Click="Submit_Button_Click"/>
+                <Label Content="Number of Jobs:" HorizontalAlignment="Left" Margin="14,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.289,0.654"/>
+                <TextBox Name="NumJobsTextBox" HorizontalAlignment="Left" Height="23" Margin="116,43,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="63" PreviewTextInput="NumberValidationTextBox"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Request Log" HorizontalAlignment="Left" Height="175" Margin="350,65,0,0" VerticalAlignment="Top" Width="432">
-            <ListView x:Name="RequestListView" Margin="10,10,-2,8"/>
+        <GroupBox Header="Request Log" HorizontalAlignment="Left" Height="175" Margin="32,73,0,0" VerticalAlignment="Top" Width="432" Grid.Column="1">
+            <ListView x:Name="RequestListView" Margin="4,10,4,8">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No." Width="50px" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Request" DisplayMemberBinding="{Binding Request}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </GroupBox>
+        <Label Content="Remaining Requests:" HorizontalAlignment="Left" Margin="289,56,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Name="RemainingRequestsLabel" Content="0" HorizontalAlignment="Left" Margin="409,56,0,0" VerticalAlignment="Top" Grid.Column="1"/>
 
     </Grid>
 </Window>

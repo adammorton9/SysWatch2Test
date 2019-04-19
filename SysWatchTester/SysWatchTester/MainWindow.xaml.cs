@@ -25,15 +25,18 @@ namespace SysWatchTester
         public AddRequest RequestDelegate;
         public delegate void AddResponse(string myString);
         public AddResponse ResponseDelegate;
-        private readonly string[] _environments = {"Dev", "QA", "Test", "UAT", "Prod"}; 
+        public delegate void UpdateRequestCount(int count);
+        public UpdateRequestCount RequestCountDelegate;
+
 
         public MainWindow()
         {
             InitializeComponent();
-            EnvComboBox.ItemsSource = _environments;
+            EnvComboBox.ItemsSource = Enum.GetValues(typeof(Environment)).Cast<Environment>();
             EnvComboBox.SelectedIndex = 0;
             RequestDelegate = AddRequestToListBox;
             ResponseDelegate = AddResponseToListBox;
+            RequestCountDelegate = UpdateRequestsRemainingLabel;
             PortTextBox.Text = HttpServer.GetRandomUnusedPort().ToString();
         }
         
@@ -66,6 +69,8 @@ namespace SysWatchTester
                 Server = new HttpServer(portNo, this);
                 StatusLabel.Content = $"Listener running.";
                 UrlLabel.Content = $"{Server.Url.Replace("*", GetLocalIPAddress())}";
+                RequestListView.Items.Clear();
+                ResponseListView.Items.Clear();
                 Server.Start();
             }
             else
@@ -117,14 +122,16 @@ namespace SysWatchTester
 
         public void AddRequestToListBox(string text)
         {
-            RequestListView.Items.Add(text);
+            var numItemsInBox = RequestListView.Items.Count;
+            RequestListView.Items.Add(new { Id = numItemsInBox + 1, Request = text});
         }
 
         private void AddResponseToListBox(string text)
         {
-            ResponseListView.Items.Add(text);
+            var numItemsInBox = ResponseListView.Items.Count;
+            ResponseListView.Items.Add(new { Id = numItemsInBox + 1, Response = text });
         }
-
+                
         public static string GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -136,6 +143,30 @@ namespace SysWatchTester
                 }
             }
             throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
+        private void UpdateRequestsRemainingLabel(int requestsRemaining)
+        {
+            RemainingRequestsLabel.Content = requestsRemaining;
+        }
+
+        private void Submit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (!TryParse(NumJobsTextBox.Text, out int numJobs))
+            {
+                MessageBox.Show("Number of jobs must be an integer.");
+                return;
+            }
+            var environment = (Environment)Enum.Parse(typeof(Environment), EnvComboBox.SelectedValue.ToString());
+            var request = new Request(environment, Server.Url.Replace("*", GetLocalIPAddress()), $"env={environment}");
+            WebServiceClient.AddRequests(numJobs);
+            UpdateRequestsRemainingLabel(WebServiceClient.RemainingRequests);
+            if (WebServiceClient.CanSendRequest())
+            {
+                WebServiceClient.DecrementRequestCount();
+                AddRequestToListBox($"{environment} - {Server.Url.Replace("*", GetLocalIPAddress())}");
+                WebServiceClient.SendRequest(request);
+            }
         }
     }
 }

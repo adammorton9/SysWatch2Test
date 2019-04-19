@@ -15,7 +15,7 @@ namespace SysWatchTester
     {
         private readonly ManualResetEvent _stop, _idle;
         private readonly Semaphore _busy;
-        private readonly int _maxThreads = Environment.ProcessorCount;
+        private readonly int _maxThreads = System.Environment.ProcessorCount;
         private const string Host = "http://*";
         private const string Endpoint = "test";
         private readonly MainWindow GUI;
@@ -93,38 +93,21 @@ namespace SysWatchTester
                 Console.WriteLine("{0} {1}", context.Request.HttpMethod, context.Request.RawUrl);
                 GUI.Dispatcher.Invoke(GUI.ResponseDelegate, $"{context.Request.HttpMethod} {context.Request.RawUrl}");
                 context.Response.SendChunked = true;
-                HttpListenerRequest request = context.Request;
+                HttpListenerRequest httpRequest = context.Request;
 
-                Request requestObj = new Request();
+                var environmentParam = httpRequest.QueryString["env"];
+                var environment = (Environment)Enum.Parse(typeof(Environment), environmentParam);
 
-                if (request.HasEntityBody)
+                SendResponse(context, "test");
+                if (WebServiceClient.CanSendRequest())
                 {
-                    // If a POST, stream the request body.
-                    string requestRaw;
-                    using (var reader = new StreamReader(request.InputStream,
-                        request.ContentEncoding))
-                    {
-                        requestRaw = reader.ReadToEnd();
-                    }
-
-                    requestObj = JsonConvert.DeserializeObject<Request>(requestRaw);
-                }
-                else
-                {
-                    // If a GET, read the query params.
-                    var parameters = request.QueryString;
-                    foreach (var parameter in parameters.AllKeys)
-                    {
-                        requestObj.Parameters.Add($"{parameter}-{parameters[parameter]}");
-                    }
+                    WebServiceClient.DecrementRequestCount();
+                    var request = new Request(environment, Url.Replace("*", MainWindow.GetLocalIPAddress()), $"env={environment}");
+                    GUI.Dispatcher.Invoke(GUI.RequestDelegate, $"{environment} - {Url.Replace("*", MainWindow.GetLocalIPAddress())}");
+                    WebServiceClient.SendRequest(request);
                 }
 
-                string responseString = JsonConvert.SerializeObject(requestObj);
-
-                Console.WriteLine($"Request Received: {responseString}");
-
-                SendResponse(context, responseString);
-
+                GUI.Dispatcher.Invoke(GUI.RequestCountDelegate, WebServiceClient.RemainingRequests);
             }
             finally
             {

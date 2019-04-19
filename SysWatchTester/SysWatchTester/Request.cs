@@ -16,5 +16,12 @@ namespace SysWatchTester
         public Environment Environment { get; }
         public string Url { get; }
         public string QueryString { get; }
+
+        public Request(Environment environment, string url, string queryString)
+        {
+            Environment = environment;
+            Url = url;
+            QueryString = queryString;
+        }
     }
 }
