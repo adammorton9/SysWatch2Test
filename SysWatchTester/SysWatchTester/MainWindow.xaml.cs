@@ -40,8 +40,6 @@ namespace SysWatchTester
             PortTextBox.Text = HttpServer.GetRandomUnusedPort().ToString();
             Server = new HttpServer();
             SubmitJobsBtn.DataContext = Server;
-            var window = new JobsWindow();
-            window.Show();
         }
         
         #region Button Click Events
